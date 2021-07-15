@@ -140,16 +140,17 @@
 ## Stack Simplify Udemy Profile
 - [Udemy Profile](https://www.udemy.com/user/kalyan-reddy-9/)
 
-## AWS EKS - Elastic Kubernetes Service - Masterclass
+# AWS EKS - Elastic Kubernetes Service - Masterclass
 [![Image](https://stacksimplify.com/course-images/AWS-EKS-Kubernetes-Masterclass-DevOps-Microservices-course.png "AWS EKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
-## Azure Kubernetes Service with Azure DevOps and Terraform 
+# Azure Kubernetes Service with Azure DevOps and Terraform 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-with-azure-devops-and-terraform.png "Azure Kubernetes Service with Azure DevOps and Terraform")](https://www.udemy.com/course/azure-kubernetes-service-with-azure-devops-and-terraform/?referralCode=2499BF7F5FAAA506ED42)
 
-## HashiCorp Certified: Terraform Associate - 50 Practical Demos
-
+# HashiCorp Certified: Terraform Associate - 50 Practical Demos
 [![Image](https://stacksimplify.com/course-images/hashicorp-certified-terraform-associate-highest-rated.png "HashiCorp Certified: Terraform Associate - 50 Practical Demos")](https://links.stacksimplify.com/hashicorp-certified-terraform-associate)
 
+# Terraform on AWS with SRE & IaC DevOps | Real-World 20 Demos
+[![Image](https://stacksimplify.com/course-images/terraform-on-aws-best-seller.png "Terraform on AWS with SRE & IaC DevOps | Real-World 20 Demos")](https://links.stacksimplify.com/terraform-on-aws-with-sre-and-iacdevops)
 
 ## Additional References
 - [Certification Curriculum](https://www.hashicorp.com/certification/terraform-associate)
