@@ -1,4 +1,6 @@
-# HashiCorp Certified: Terraform Associate on Azure - 70 Demos
+# Azure - HashiCorp Certified: Terraform Associate - 70 Demos
+[![Image](https://stacksimplify.com/course-images/azure-hashicorp-certified-terraform-associate-70demos.png "Azure - HashiCorp Certified: Terraform Associate - 70 Demos")](https://links.stacksimplify.com/azure-hashicorp-certified-terraform-associate)
+
 
 ## Course Modules
 01. Infrastructure as Code (IaC)
@@ -56,8 +58,8 @@
 53. Build Local Module
 54. Publish Modules to Terraform Public Registry
 55. Module Sources
-56. Terraform Cloud - VCS-Driven Worflow
-57. Terraform Cloud - CLI-Driven Worflow
+56. Terraform Cloud - VCS-Driven Workflow
+57. Terraform Cloud - CLI-Driven Workflow
 58. Terraform Cloud - Share modules in private module registry
 59. Migrate State to Terraform Cloud
 60. Basic Sentinel & Cost Control Policies
