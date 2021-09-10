@@ -2,7 +2,7 @@
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/virtual_network
 data "azurerm_virtual_network" "vnetds" {
   name = azurerm_virtual_network.myvnet.name
-  resource_group_name = azurerm_virtual_network.myvnet.location
+  resource_group_name = azurerm_resource_group.myrg.name
 }
 
 ## TEST DATASOURCES using OUTPUTS
