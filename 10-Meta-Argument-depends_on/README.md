@@ -55,7 +55,7 @@ resource "azurerm_resource_group" "myrg" {
 }
 ```
 
-## Step-04: c3-vritual-network.tf - Virtual Network Resource
+## Step-04: c3-virtual-network.tf - Virtual Network Resource
 ```t
 # Create Virtual Network
 resource "azurerm_virtual_network" "myvnet" {
@@ -66,7 +66,7 @@ resource "azurerm_virtual_network" "myvnet" {
 }
 ```
 
-## Step-05: c3-vritual-network.tf  - Azure Subnet Resource
+## Step-05: c3-virtual-network.tf  - Azure Subnet Resource
 ```t
 # Create Subnet
 resource "azurerm_subnet" "mysubnet" {
@@ -76,7 +76,7 @@ resource "azurerm_subnet" "mysubnet" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 ```
-## Step-06: c3-vritual-network.tf  - Azure Public IP Resource
+## Step-06: c3-virtual-network.tf  - Azure Public IP Resource
 ```t
 
 # Create Public IP Address
@@ -91,7 +91,7 @@ resource "azurerm_public_ip" "mypublicip" {
   }
 }
 ``` 
-## Step-07: c3-vritual-network.tf  - Network Interface Resource
+## Step-07: c3-virtual-network.tf  - Network Interface Resource
 ```t
 # Create Network Interface
 resource "azurerm_network_interface" "myvmnic" {
