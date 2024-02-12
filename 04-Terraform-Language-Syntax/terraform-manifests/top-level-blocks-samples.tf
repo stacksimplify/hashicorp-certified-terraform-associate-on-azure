@@ -55,7 +55,7 @@ output "azure_resourcegroup_id" {
 # Block-6: Local Values Block
 # Define Local Value with Business Unit and Environment Name combined
 locals {
-  name = "${var.business_unit}-${var.environment_name}"
+  #name = "${var.business_unit}-${var.environment_name}"
 }
 #####################################################################
 # Block-7: Data sources Block
@@ -69,7 +69,7 @@ output "id" {
 #####################################################################
 # Block-8: Modules Block
 # Azure Virtual Network Block using Terraform Modules (https://registry.terraform.io/modules/Azure/network/azurerm/latest)
-module "network" {
+/*module "network" {
   source              = "Azure/network/azurerm"
   resource_group_name = azurerm_resource_group.example.name
   address_spaces      = ["10.0.0.0/16", "10.2.0.0/16"]
@@ -84,3 +84,4 @@ module "network" {
   depends_on = [azurerm_resource_group.example]
 }
 #####################################################################
+*/
