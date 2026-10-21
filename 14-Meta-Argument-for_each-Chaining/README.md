@@ -8,7 +8,7 @@ description: Learn Terraform Resource Meta-Argument for_each Chaining
 - Because a resource using `for_each` appears as a `map of objects` or `set of strings` when used in expressions elsewhere, you can directly use one resource as the `for_each of another in situations` where there is a `one-to-one relationship` between two sets of objects.
 - In our case, we will use the `azurerm_network_interface.myvmnic` resource directly in `azurerm_linux_virtual_machine.mylinuxvm` Resource. 
 
-## Step-02: Review Terarform Manifests
+## Step-02: Review Terraform Manifests
 - Copy the `terraform-manifests` from Section `11-Meta-Argument-count\terraform-manifests-v2` and re-implement this usecase using `for_each`. 
 - Also apply `for_each` chaining concept
 1. c1-versions.tf
