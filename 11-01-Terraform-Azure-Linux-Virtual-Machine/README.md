@@ -4,7 +4,9 @@ description: Learn to Provision Azure Linux VM using Terraform
 ---
 
 ## Step-01: Introduction
+
 - We will create the below Azure Resources using Terraform
+
 1. Azure Resource Group
 2. Azure Virtual Network
 3. Azure Subnet
@@ -12,41 +14,45 @@ description: Learn to Provision Azure Linux VM using Terraform
 5. Azure Network Interface
 6. [Azure Linux Virtual Machine](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine)
 7. `random_string` Resource
+
 - We will use Azure `custom_data` argument in `azurerm_linux_virtual_machine` to install a simple webserver during the creation of VM.
 - [Terraform file Function](https://www.terraform.io/docs/language/functions/file.html)
 - [Terraform filebase64 Function](https://www.terraform.io/docs/language/functions/filebase64.html)
 
 ## Step-02: Create SSH Keys for Azure Linux VM
+
 ```t
 # Create Folder
 cd terraform-manifests/
 mkdir ssh-keys
 
 # Create SSH Key
-cd ssh-ekys
+cd ssh-keys
 ssh-keygen \
     -m PEM \
     -t rsa \
     -b 4096 \
     -C "azureuser@myserver" \
-    -f terraform-azure.pem 
+    -f terraform-azure.pem
 Important Note: If you give passphrase during generation, during everytime you login to VM, you also need to provide passphrase.
 
 # List Files
 ls -lrt ssh-keys/
 
-# Files Generated after above command 
+# Files Generated after above command
 Public Key: terraform-azure.pem.pub -> Rename as terraform-azure.pub
 Private Key: terraform-azure.pem
 
 # Permissions for Pem file
 chmod 400 terraform-azure.pem
-```  
+```
 
-## Step-03: c1-versions.tf - Create Terraform & Provider Blocks 
+## Step-03: c1-versions.tf - Create Terraform & Provider Blocks
+
 - Create Terraform Block
 - Create Provider Block
 - Create Random Resource Block
+
 ```t
 # Terraform Block
 terraform {
@@ -54,7 +60,7 @@ terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      version = ">= 2.0" 
+      version = ">= 2.0"
     }
     random = {
       source = "hashicorp/random"
@@ -65,18 +71,20 @@ terraform {
 
 # Provider Block
 provider "azurerm" {
- features {}          
+ features {}
 }
 
 # Random String Resource
 resource "random_string" "myrandom" {
   length = 6
-  upper = false 
+  upper = false
   special = false
-  number = false   
+  number = false
 }
 ```
+
 ## Step-04: c2-resource-group.tf
+
 ```t
 # Resource-1: Azure Resource Group
 resource "azurerm_resource_group" "myrg" {
@@ -86,6 +94,7 @@ resource "azurerm_resource_group" "myrg" {
 ```
 
 ## Step-05: c3-vritual-network.tf - Virtual Network Resource
+
 ```t
 # Create Virtual Network
 resource "azurerm_virtual_network" "myvnet" {
@@ -96,7 +105,8 @@ resource "azurerm_virtual_network" "myvnet" {
 }
 ```
 
-## Step-06: c3-vritual-network.tf  - Azure Subnet Resource
+## Step-06: c3-vritual-network.tf - Azure Subnet Resource
+
 ```t
 # Create Subnet
 resource "azurerm_subnet" "mysubnet" {
@@ -106,7 +116,9 @@ resource "azurerm_subnet" "mysubnet" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 ```
-## Step-07: c3-vritual-network.tf  - Azure Public IP Resource
+
+## Step-07: c3-vritual-network.tf - Azure Public IP Resource
+
 ```t
 
 # Create Public IP Address
@@ -120,8 +132,10 @@ resource "azurerm_public_ip" "mypublicip" {
     environment = "Dev"
   }
 }
-``` 
-## Step-08: c3-vritual-network.tf  - Network Interface Resource
+```
+
+## Step-08: c3-vritual-network.tf - Network Interface Resource
+
 ```t
 
 # Create Network Interface
@@ -134,12 +148,13 @@ resource "azurerm_network_interface" "myvmnic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.mysubnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.mypublicip.id 
+    public_ip_address_id = azurerm_public_ip.mypublicip.id
   }
 }
 ```
 
 ## Step-09: c4-linux-virtual-machine.tf
+
 ```t
 # Resource: Azure Linux Virtual Machine
 resource "azurerm_linux_virtual_machine" "mylinuxvm" {
@@ -172,29 +187,31 @@ resource "azurerm_linux_virtual_machine" "mylinuxvm" {
 ```
 
 ## Step-10: app1-cloud-init.txt
+
 ```t
 #cloud-config
 package_upgrade: false
 packages:
   - httpd
 write_files:
-  - owner: root:root 
+  - owner: root:root
     path: /var/www/html/index.html
     content: |
       <h1>Welcome to StackSimplify - APP-1</h1>
-  - owner: root:root 
+  - owner: root:root
     path: /var/www/html/app1/index.html
     content: |
-      <!DOCTYPE html> <html> <body style="background-color:rgb(250, 210, 210);"> <h1>Welcome to Stack Simplify - APP-1</h1> <p>Terraform Demo</p> <p>Application Version: V1</p> </body></html>      
+      <!DOCTYPE html> <html> <body style="background-color:rgb(250, 210, 210);"> <h1>Welcome to Stack Simplify - APP-1</h1> <p>Terraform Demo</p> <p>Application Version: V1</p> </body></html>
 runcmd:
-  - sudo systemctl start httpd  
+  - sudo systemctl start httpd
   - sudo systemctl enable httpd
   - sudo systemctl stop firewalld
-  - sudo mkdir /var/www/html/app1 
+  - sudo mkdir /var/www/html/app1
   - [sudo, curl, -H, "Metadata:true", --noproxy, "*", "http://169.254.169.254/metadata/instance?api-version=2020-09-01", -o, /var/www/html/app1/metadata.html]
 ```
 
 ## Step-11: Execute Terraform commands to Create Resources using Terraform
+
 ```t
 # Initialize Terraform
 terraform init
@@ -202,23 +219,26 @@ terraform init
 # Terraform Validate
 terraform validate
 
-# Terraform Plan 
+# Terraform Plan
 terraform plan
 
-# Terraform Apply 
-terraform apply 
+# Terraform Apply
+terraform apply
 ```
 
 ## Step-12: Verify the Resources
+
 - Verify Resources
+
 1. Azure Resource Group
 2. Azure Virtual Network
 3. Azure Subnet
 4. Azure Public IP
 5. Azure Network Interface
 6. Azure Virtual Machine
+
 ```t
-# Connect to VM and Verify 
+# Connect to VM and Verify
 ssh -i ssh-keys/terraform-azure.pem azureuser@<PUBLIC-IP>
 
 # Access Application
@@ -227,8 +247,8 @@ http://<PUBLIC_IP>/app1
 http://<PUBLIC_IP>/app1/metadata.html
 ```
 
-
 ## Step-13: Destroy Terraform Resources
+
 ```t
 # Destroy Terraform Resources
 terraform destroy
@@ -238,7 +258,8 @@ rm -rf .terraform*
 rm -rf terraform.tfstate*
 ```
 
-## References 
+## References
+
 1. [Azure Resource Group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)
 2. [Azure Virtual Network](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network)
 3. [Azure Subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet)
